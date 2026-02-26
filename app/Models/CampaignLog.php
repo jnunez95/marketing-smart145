@@ -24,7 +24,7 @@ class CampaignLog extends Model
     protected function casts(): array
     {
         return [
-            'opened_at' => 'datetime',
+            'opened_at'  => 'datetime',
             'clicked_at' => 'datetime',
         ];
     }

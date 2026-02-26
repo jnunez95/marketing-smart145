@@ -17,7 +17,8 @@ class SendCampaignJob implements ShouldQueue
 
     public function __construct(
         public Campaign $campaign
-    ) {}
+    ) {
+    }
 
     public function handle(): void
     {
@@ -33,10 +34,10 @@ class SendCampaignJob implements ShouldQueue
         $query->chunk(50, function ($stations) use (&$count): void {
             foreach ($stations as $station) {
                 $log = CampaignLog::create([
-                    'campaign_id' => $this->campaign->id,
-                    'station_id' => $station->id,
-                    'email' => $station->email,
-                    'status' => CampaignLog::STATUS_PENDING,
+                    'campaign_id'    => $this->campaign->id,
+                    'station_id'     => $station->id,
+                    'email'          => $station->email,
+                    'status'         => CampaignLog::STATUS_PENDING,
                     'tracking_token' => (string) Str::uuid(),
                 ]);
                 SendCampaignEmailJob::dispatch($this->campaign, $station, $log);
@@ -47,7 +48,7 @@ class SendCampaignJob implements ShouldQueue
         if ($count === 0) {
             $hasPendingSchedules = $this->campaign->campaignSchedules()->whereNull('sent_at')->exists();
             $this->campaign->update([
-                'status' => $hasPendingSchedules ? Campaign::STATUS_SCHEDULED : Campaign::STATUS_DRAFT,
+                'status'           => $hasPendingSchedules ? Campaign::STATUS_SCHEDULED : Campaign::STATUS_DRAFT,
                 'total_recipients' => 0,
             ]);
 
@@ -57,8 +58,8 @@ class SendCampaignJob implements ShouldQueue
         $hasPendingSchedules = $this->campaign->campaignSchedules()->whereNull('sent_at')->exists();
         $this->campaign->update([
             'total_recipients' => $count,
-            'status' => $hasPendingSchedules ? Campaign::STATUS_SCHEDULED : Campaign::STATUS_SENT,
-            'sent_at' => now(),
+            'status'           => $hasPendingSchedules ? Campaign::STATUS_SCHEDULED : Campaign::STATUS_SENT,
+            'sent_at'          => now(),
         ]);
     }
 }

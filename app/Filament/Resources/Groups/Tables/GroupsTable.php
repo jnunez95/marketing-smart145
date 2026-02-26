@@ -28,7 +28,7 @@ class GroupsTable
                     ->sortable(),
                 TextColumn::make('color')
                     ->formatStateUsing(function (?string $state): HtmlString {
-                        if (! $state) {
+                        if (!$state) {
                             return new HtmlString('<span class="text-gray-400">—</span>');
                         }
                         $hex = str_starts_with($state, '#') ? $state : '#'.$state;

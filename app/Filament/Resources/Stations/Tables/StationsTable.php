@@ -55,11 +55,11 @@ class StationsTable
                     ->label('Group')
                     ->formatStateUsing(function (?string $state, \App\Models\Station $record): string|HtmlString {
                         $group = $record->group;
-                        if (! $group) {
+                        if (!$group) {
                             return $state ?? '—';
                         }
                         $color = $group->color;
-                        if (! $color) {
+                        if (!$color) {
                             return $group->name ?? $state ?? '—';
                         }
                         $hex = str_starts_with($color, '#') ? $color : '#'.$color;

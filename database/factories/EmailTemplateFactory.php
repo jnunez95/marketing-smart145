@@ -15,12 +15,12 @@ class EmailTemplateFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(3),
-            'subject' => fake()->sentence(),
-            'body_html' => '<p>'.fake()->paragraphs(3, true).'</p>',
+            'name'       => fake()->sentence(3),
+            'subject'    => fake()->sentence(),
+            'body_html'  => '<p>'.fake()->paragraphs(3, true).'</p>',
             'body_plain' => fake()->paragraphs(3, true),
-            'variables' => ['agency_name', 'email', 'accountable_manager'],
-            'is_active' => true,
+            'variables'  => ['agency_name', 'email', 'accountable_manager'],
+            'is_active'  => true,
         ];
     }
 }

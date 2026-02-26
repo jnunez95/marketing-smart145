@@ -32,20 +32,20 @@ class CampaignsTable
                 TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
-                        Campaign::STATUS_DRAFT => 'gray',
+                        Campaign::STATUS_DRAFT     => 'gray',
                         Campaign::STATUS_SCHEDULED => 'warning',
-                        Campaign::STATUS_SENDING => 'info',
-                        Campaign::STATUS_SENT => 'success',
-                        Campaign::STATUS_FAILED => 'danger',
-                        default => 'gray',
+                        Campaign::STATUS_SENDING   => 'info',
+                        Campaign::STATUS_SENT      => 'success',
+                        Campaign::STATUS_FAILED    => 'danger',
+                        default                    => 'gray',
                     })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
-                        Campaign::STATUS_DRAFT => 'Draft',
+                        Campaign::STATUS_DRAFT     => 'Draft',
                         Campaign::STATUS_SCHEDULED => 'Scheduled',
-                        Campaign::STATUS_SENDING => 'Sending',
-                        Campaign::STATUS_SENT => 'Sent',
-                        Campaign::STATUS_FAILED => 'Failed',
-                        default => $state,
+                        Campaign::STATUS_SENDING   => 'Sending',
+                        Campaign::STATUS_SENT      => 'Sent',
+                        Campaign::STATUS_FAILED    => 'Failed',
+                        default                    => $state,
                     }),
                 TextColumn::make('total_recipients')
                     ->label('Recipients')
@@ -75,10 +75,10 @@ class CampaignsTable
             ->filters([
                 \Filament\Tables\Filters\SelectFilter::make('status')
                     ->options([
-                        Campaign::STATUS_DRAFT => 'Draft',
+                        Campaign::STATUS_DRAFT     => 'Draft',
                         Campaign::STATUS_SCHEDULED => 'Scheduled',
-                        Campaign::STATUS_SENT => 'Sent',
-                        Campaign::STATUS_FAILED => 'Failed',
+                        Campaign::STATUS_SENT      => 'Sent',
+                        Campaign::STATUS_FAILED    => 'Failed',
                     ]),
             ])
             ->recordActions([

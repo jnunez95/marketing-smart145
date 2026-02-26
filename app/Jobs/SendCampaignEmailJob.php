@@ -21,14 +21,15 @@ class SendCampaignEmailJob implements ShouldQueue
         public Campaign $campaign,
         public Station $station,
         public CampaignLog $campaignLog
-    ) {}
+    ) {
+    }
 
     public function handle(): void
     {
         $template = $this->campaign->emailTemplate;
-        if (! $template) {
+        if (!$template) {
             $this->campaignLog->update([
-                'status' => CampaignLog::STATUS_FAILED,
+                'status'        => CampaignLog::STATUS_FAILED,
                 'error_message' => 'Campaign has no email template.',
             ]);
 
@@ -42,7 +43,7 @@ class SendCampaignEmailJob implements ShouldQueue
         $openTrackingUrl = route('campaign.track.open', ['token' => $trackingToken]);
         $trackingPixel = '<img src="'.$openTrackingUrl.'" width="1" height="1" alt="" style="display:none" />';
         $bodyHtml = str_replace('</body>', $trackingPixel.'</body>', $bodyHtml);
-        if (! str_contains($bodyHtml, '</body>')) {
+        if (!str_contains($bodyHtml, '</body>')) {
             $bodyHtml .= $trackingPixel;
         }
 
@@ -56,7 +57,7 @@ class SendCampaignEmailJob implements ShouldQueue
             $this->campaign->increment('total_sent');
         } catch (\Throwable $e) {
             $this->campaignLog->update([
-                'status' => CampaignLog::STATUS_FAILED,
+                'status'        => CampaignLog::STATUS_FAILED,
                 'error_message' => $e->getMessage(),
             ]);
             throw $e;

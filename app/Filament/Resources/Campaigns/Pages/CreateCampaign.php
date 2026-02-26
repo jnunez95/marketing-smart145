@@ -12,7 +12,7 @@ class CreateCampaign extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $hasSchedules = ! empty($data['campaignSchedules']) && is_array($data['campaignSchedules']);
+        $hasSchedules = !empty($data['campaignSchedules']) && is_array($data['campaignSchedules']);
         $data['status'] = $hasSchedules
             ? Campaign::STATUS_SCHEDULED
             : Campaign::STATUS_DRAFT;

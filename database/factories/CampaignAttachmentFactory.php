@@ -19,10 +19,10 @@ class CampaignAttachmentFactory extends Factory
 
         return [
             'campaign_id' => Campaign::factory(),
-            'file_path' => 'campaigns/'.fake()->uuid().'/'.$name,
-            'file_name' => $name,
-            'file_size' => fake()->numberBetween(1000, 5000000),
-            'mime_type' => 'application/pdf',
+            'file_path'   => 'campaigns/'.fake()->uuid().'/'.$name,
+            'file_name'   => $name,
+            'file_size'   => fake()->numberBetween(1000, 5000000),
+            'mime_type'   => 'application/pdf',
         ];
     }
 }

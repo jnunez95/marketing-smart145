@@ -38,18 +38,18 @@ class CampaignEmail extends Mailable
     {
         $this->emailTemplate = EmailTemplate::findEmailByKey($this->template, App::currentLocale());
 
-        if (! $this->emailTemplate) {
+        if (!$this->emailTemplate) {
             Log::warning("Email template {$this->template} was not found.");
 
             return $this;
         }
 
         $data = [
-            'content' => TokenHelper::replace($this->emailTemplate->content ?? '', $this),
-            'preHeaderText' => TokenHelper::replace($this->emailTemplate->preheader ?? '', $this),
-            'title' => TokenHelper::replace($this->emailTemplate->title ?? '', $this),
-            'theme' => $this->emailTemplate->theme->colours,
-            'logo' => $this->emailTemplate->logo,
+            'content'        => TokenHelper::replace($this->emailTemplate->content ?? '', $this),
+            'preHeaderText'  => TokenHelper::replace($this->emailTemplate->preheader ?? '', $this),
+            'title'          => TokenHelper::replace($this->emailTemplate->title ?? '', $this),
+            'theme'          => $this->emailTemplate->theme->colours,
+            'logo'           => $this->emailTemplate->logo,
             'tracking_pixel' => $this->trackingPixelHtml ?? '',
         ];
 

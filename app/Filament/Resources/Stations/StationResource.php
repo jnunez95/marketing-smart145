@@ -52,9 +52,9 @@ class StationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListStations::route('/'),
+            'index'  => ListStations::route('/'),
             'create' => CreateStation::route('/create'),
-            'edit' => EditStation::route('/{record}/edit'),
+            'edit'   => EditStation::route('/{record}/edit'),
         ];
     }
 }
