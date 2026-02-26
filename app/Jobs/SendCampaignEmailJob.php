@@ -40,12 +40,6 @@ class SendCampaignEmailJob implements ShouldQueue
         $bodyHtml = TemplateVariableParser::replace($template->body_html, $this->station);
 
         $trackingToken = $this->campaignLog->tracking_token;
-        $openTrackingUrl = route('campaign.track.open', ['token' => $trackingToken]);
-        $trackingPixel = '<img src="'.$openTrackingUrl.'" width="1" height="1" alt="" style="display:none" />';
-        $bodyHtml = str_replace('</body>', $trackingPixel.'</body>', $bodyHtml);
-        if (!str_contains($bodyHtml, '</body>')) {
-            $bodyHtml .= $trackingPixel;
-        }
 
         try {
             Mail::html($bodyHtml, function ($message) use ($subject, $trackingToken): void {

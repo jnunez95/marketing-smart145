@@ -59,36 +59,6 @@ class CampaignForm
                             ->columnSpanFull(),
                     ])
                     ->collapsible(),
-                Section::make('Campaign statistics')
-                    ->description('Delivery and engagement metrics (updated by Postmark webhooks).')
-                    ->schema([
-                        TextInput::make('total_recipients')
-                            ->label('Recipients')
-                            ->numeric()
-                            ->disabled(),
-                        TextInput::make('total_sent')
-                            ->label('Sent')
-                            ->numeric()
-                            ->disabled(),
-                        TextInput::make('total_opened')
-                            ->label('Opened')
-                            ->numeric()
-                            ->disabled(),
-                        TextInput::make('total_clicked')
-                            ->label('Clicks')
-                            ->numeric()
-                            ->disabled(),
-                        TextInput::make('total_bounced')
-                            ->label('Bounces')
-                            ->numeric()
-                            ->disabled(),
-                        TextInput::make('total_spam_complaints')
-                            ->label('Spam complaints')
-                            ->numeric()
-                            ->disabled(),
-                    ])
-                    ->columns(3)
-                    ->collapsible(),
             ]);
     }
 }
