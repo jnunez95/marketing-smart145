@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Station;
 use App\Models\Campaign;
 use App\Models\CampaignLog;
+use App\Models\Station;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

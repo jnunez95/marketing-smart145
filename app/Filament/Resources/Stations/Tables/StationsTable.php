@@ -58,8 +58,9 @@ class StationsTable
                         if (! $color) {
                             return $group->name ?? $state ?? '—';
                         }
-                        $hex = str_starts_with($color, '#') ? $color : '#' . $color;
+                        $hex = str_starts_with($color, '#') ? $color : '#'.$color;
                         $name = e($group->name ?? $state ?? '');
+
                         return new HtmlString(
                             '<span style="display:inline-block;padding:0.2em 0.5em;border-radius:0.25rem;background-color:'.e($hex).';color:#fff;font-size:0.875rem">'.$name.'</span>'
                         );

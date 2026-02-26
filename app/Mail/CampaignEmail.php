@@ -14,9 +14,9 @@ use Visualbuilder\EmailTemplates\Traits\BuildGenericEmail;
 
 class CampaignEmail extends Mailable
 {
+    use BuildGenericEmail;
     use Queueable;
     use SerializesModels;
-    use BuildGenericEmail;
 
     public string $template;
 

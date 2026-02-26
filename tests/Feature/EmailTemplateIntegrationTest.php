@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Mail\CampaignEmail;
-use App\Models\Station;
 use App\Models\EmailTemplate;
+use App\Models\Station;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\App;
-use Visualbuilder\EmailTemplates\Models\EmailTemplateTheme;
 use Tests\TestCase;
+use Visualbuilder\EmailTemplates\Models\EmailTemplateTheme;
 
 class EmailTemplateIntegrationTest extends TestCase
 {

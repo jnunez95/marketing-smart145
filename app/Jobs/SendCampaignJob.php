@@ -49,6 +49,7 @@ class SendCampaignJob implements ShouldQueue
                 'status' => $this->campaign->scheduled_at ? Campaign::STATUS_SCHEDULED : Campaign::STATUS_DRAFT,
                 'total_recipients' => 0,
             ]);
+
             return;
         }
 
