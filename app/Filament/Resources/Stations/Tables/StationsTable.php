@@ -9,10 +9,13 @@ use Filament\Actions\BulkAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\HtmlString;
 
 class StationsTable
@@ -52,11 +55,11 @@ class StationsTable
                     ->label('Group')
                     ->formatStateUsing(function (?string $state, \App\Models\Station $record): string|HtmlString {
                         $group = $record->group;
-                        if (! $group) {
+                        if (!$group) {
                             return $state ?? '—';
                         }
                         $color = $group->color;
-                        if (! $color) {
+                        if (!$color) {
                             return $group->name ?? $state ?? '—';
                         }
                         $hex = str_starts_with($color, '#') ? $color : '#'.$color;
@@ -71,6 +74,26 @@ class StationsTable
                     ->sortable(),
             ])
             ->filters([
+                Filter::make('only_with_email')
+                    ->form([
+                        Checkbox::make('exclude_no_email')
+                            ->label('Exclude contacts without email')
+                            ->default(true),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        if ($data['exclude_no_email'] ?? true) {
+                            $query->whereNotNull('email')->where('email', '!=', '');
+                        }
+
+                        return $query;
+                    })
+                    ->indicateUsing(function (array $data): ?string {
+                        if ($data['exclude_no_email'] ?? true) {
+                            return 'Only with email';
+                        }
+
+                        return null;
+                    }),
                 SelectFilter::make('group_id')
                     ->relationship('group', 'name')
                     ->label('Group')

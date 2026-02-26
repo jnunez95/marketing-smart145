@@ -18,7 +18,7 @@ class EditCampaign extends EditRecord
     {
         $record = $this->getRecord();
         $hasPendingSchedules = $record->campaignSchedules()->whereNull('sent_at')->exists();
-        if (! $hasPendingSchedules && $record->status === Campaign::STATUS_SCHEDULED) {
+        if (!$hasPendingSchedules && $record->status === Campaign::STATUS_SCHEDULED) {
             $record->update(['status' => Campaign::STATUS_DRAFT]);
         }
     }

@@ -17,7 +17,7 @@ class CampaignSchedule extends Model
     {
         return [
             'scheduled_at' => 'datetime',
-            'sent_at' => 'datetime',
+            'sent_at'      => 'datetime',
         ];
     }
 

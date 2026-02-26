@@ -4,17 +4,16 @@ use App\Models\Campaign;
 use App\Models\CampaignSchedule;
 use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Campaign::whereNotNull('scheduled_at')
             ->whereDoesntHave('campaignSchedules')
             ->each(function (Campaign $campaign): void {
                 CampaignSchedule::create([
-                    'campaign_id' => $campaign->id,
+                    'campaign_id'  => $campaign->id,
                     'scheduled_at' => $campaign->scheduled_at,
-                    'sent_at' => $campaign->status === Campaign::STATUS_SENT ? $campaign->sent_at : null,
+                    'sent_at'      => $campaign->status === Campaign::STATUS_SENT ? $campaign->sent_at : null,
                 ]);
             });
     }

@@ -17,17 +17,17 @@ class CampaignFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(3),
+            'name'              => fake()->sentence(3),
             'email_template_id' => EmailTemplate::factory(),
-            'group_id' => null,
-            'scheduled_at' => null,
-            'sent_at' => null,
-            'status' => Campaign::STATUS_DRAFT,
-            'total_recipients' => 0,
-            'total_sent' => 0,
-            'total_opened' => 0,
-            'total_clicked' => 0,
-            'created_by' => User::factory(),
+            'group_id'          => null,
+            'scheduled_at'      => null,
+            'sent_at'           => null,
+            'status'            => Campaign::STATUS_DRAFT,
+            'total_recipients'  => 0,
+            'total_sent'        => 0,
+            'total_opened'      => 0,
+            'total_clicked'     => 0,
+            'created_by'        => User::factory(),
         ];
     }
 }

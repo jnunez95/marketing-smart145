@@ -48,7 +48,7 @@ class CampaignForm
                             ->addActionLabel('Add schedule')
                             ->itemLabel(function (mixed $uuid, $component): string {
                                 $state = $component->getState();
-                                if (! is_array($state)) {
+                                if (!is_array($state)) {
                                     return '1';
                                 }
                                 $keys = array_keys($state);

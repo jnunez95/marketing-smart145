@@ -54,8 +54,8 @@ class Station extends Model
     protected function casts(): array
     {
         return [
-            'latitude' => 'decimal:7',
-            'longitude' => 'decimal:7',
+            'latitude'          => 'decimal:7',
+            'longitude'         => 'decimal:7',
             'updated_at_source' => 'date',
         ];
     }

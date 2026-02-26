@@ -52,9 +52,9 @@ class CampaignResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListCampaigns::route('/'),
+            'index'  => ListCampaigns::route('/'),
             'create' => CreateCampaign::route('/create'),
-            'edit' => EditCampaign::route('/{record}/edit'),
+            'edit'   => EditCampaign::route('/{record}/edit'),
         ];
     }
 }

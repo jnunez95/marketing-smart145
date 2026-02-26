@@ -17,13 +17,13 @@ class CampaignLogFactory extends Factory
     public function definition(): array
     {
         return [
-            'campaign_id' => Campaign::factory(),
-            'station_id' => Station::factory(),
-            'email' => fake()->email(),
-            'status' => CampaignLog::STATUS_PENDING,
-            'opened_at' => null,
-            'clicked_at' => null,
-            'error_message' => null,
+            'campaign_id'    => Campaign::factory(),
+            'station_id'     => Station::factory(),
+            'email'          => fake()->email(),
+            'status'         => CampaignLog::STATUS_PENDING,
+            'opened_at'      => null,
+            'clicked_at'     => null,
+            'error_message'  => null,
             'tracking_token' => str()->uuid()->toString(),
         ];
     }

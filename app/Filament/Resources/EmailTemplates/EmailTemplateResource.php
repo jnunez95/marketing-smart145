@@ -52,9 +52,9 @@ class EmailTemplateResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListEmailTemplates::route('/'),
+            'index'  => ListEmailTemplates::route('/'),
             'create' => CreateEmailTemplate::route('/create'),
-            'edit' => EditEmailTemplate::route('/{record}/edit'),
+            'edit'   => EditEmailTemplate::route('/{record}/edit'),
         ];
     }
 }
