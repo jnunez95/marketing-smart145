@@ -20,6 +20,7 @@ class StationsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultPaginationPageOption(50)
             ->columns([
                 TextColumn::make('agency_name')
                     ->label('Name')

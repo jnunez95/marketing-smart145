@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\SendCampaignJob;
-use App\Models\Campaign;
+use App\Models\CampaignSchedule;
 use Illuminate\Console\Command;
 
 class ProcessScheduledCampaignsCommand extends Command
@@ -14,16 +14,22 @@ class ProcessScheduledCampaignsCommand extends Command
 
     public function handle(): int
     {
-        $campaigns = Campaign::where('status', Campaign::STATUS_SCHEDULED)
-            ->whereNotNull('scheduled_at')
+        $schedules = CampaignSchedule::with('campaign')
+            ->whereNull('sent_at')
             ->where('scheduled_at', '<=', now())
+            ->orderBy('scheduled_at')
             ->get();
 
-        foreach ($campaigns as $campaign) {
-            SendCampaignJob::dispatch($campaign);
+        $count = 0;
+        foreach ($schedules as $schedule) {
+            SendCampaignJob::dispatch($schedule->campaign);
+            $schedule->update(['sent_at' => now()]);
+            $count++;
         }
 
-        $this->info('Dispatched '.$campaigns->count().' scheduled campaign(s).');
+        if ($count > 0) {
+            $this->info('Dispatched '.$count.' scheduled send(s).');
+        }
 
         return self::SUCCESS;
     }

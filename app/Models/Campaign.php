@@ -67,4 +67,9 @@ class Campaign extends Model
     {
         return $this->hasMany(CampaignAttachment::class);
     }
+
+    public function campaignSchedules(): HasMany
+    {
+        return $this->hasMany(CampaignSchedule::class)->orderBy('scheduled_at');
+    }
 }
