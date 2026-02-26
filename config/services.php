@@ -15,8 +15,8 @@ return [
     */
 
     'postmark' => [
-        'key'         => env('POSTMARK_TOKEN', ''),
-        'webhook_key' => env('POSTMARK_WEBHOOKS_KEY', ''),
+        'key'               => env('POSTMARK_TOKEN', ''),
+        'webhook_api_key'   => env('POSTMARK_WEBHOOK_API_KEY', ''),
     ],
 
     'resend' => [

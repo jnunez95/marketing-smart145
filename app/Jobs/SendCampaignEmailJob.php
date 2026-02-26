@@ -48,9 +48,10 @@ class SendCampaignEmailJob implements ShouldQueue
         }
 
         try {
-            Mail::html($bodyHtml, function ($message) use ($subject): void {
+            Mail::html($bodyHtml, function ($message) use ($subject, $trackingToken): void {
                 $message->to($this->station->email)
                     ->subject($subject);
+                $message->getHeaders()->addTextHeader('X-PM-Tag', $trackingToken);
             });
 
             $this->campaignLog->update(['status' => CampaignLog::STATUS_SENT]);

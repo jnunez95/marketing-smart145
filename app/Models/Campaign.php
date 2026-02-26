@@ -22,6 +22,8 @@ class Campaign extends Model
         'total_sent',
         'total_opened',
         'total_clicked',
+        'total_bounced',
+        'total_spam_complaints',
         'created_by',
     ];
 

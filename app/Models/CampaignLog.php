@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CampaignLog extends Model
 {
@@ -39,6 +40,10 @@ class CampaignLog extends Model
 
     public const STATUS_CLICKED = 'clicked';
 
+    public const STATUS_BOUNCED = 'bounced';
+
+    public const STATUS_SPAM_COMPLAINT = 'spam_complaint';
+
     public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
@@ -47,5 +52,10 @@ class CampaignLog extends Model
     public function station(): BelongsTo
     {
         return $this->belongsTo(Station::class, 'station_id');
+    }
+
+    public function emailEvents(): HasMany
+    {
+        return $this->hasMany(EmailEvent::class);
     }
 }
