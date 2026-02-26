@@ -12,13 +12,15 @@ class EmailStatistics extends Page
 {
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-chart-bar';
 
-    protected static ?string $navigationLabel = 'Email statistics';
+    protected static \UnitEnum|string|null $navigationGroup = 'Statistics';
 
-    protected static ?string $title = 'Email statistics';
+    protected static ?string $navigationLabel = 'Emails';
+
+    protected static ?string $title = 'Emails';
 
     protected static ?string $slug = 'email-statistics';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 0;
 
     public function getHeaderWidgets(): array
     {
