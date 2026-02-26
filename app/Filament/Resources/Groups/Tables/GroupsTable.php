@@ -31,8 +31,9 @@ class GroupsTable
                         if (! $state) {
                             return new HtmlString('<span class="text-gray-400">—</span>');
                         }
-                        $hex = str_starts_with($state, '#') ? $state : '#' . $state;
+                        $hex = str_starts_with($state, '#') ? $state : '#'.$state;
                         $bg = e($hex);
+
                         return new HtmlString(
                             '<span style="display:inline-block;padding:0.2em 0.5em;border-radius:0.25rem;background-color:'.$bg.';color:#fff;font-size:0.875rem">'.e($hex).'</span>'
                         );
@@ -60,7 +61,7 @@ class GroupsTable
                         ->label('View stations')
                         ->icon('heroicon-o-building-office-2')
                         ->extraAttributes(['class' => 'hover:!bg-gray-100 dark:hover:!bg-gray-700'])
-                        ->url(fn (Group $record): string => StationResource::getUrl('index') . '?group_id=' . $record->id),
+                        ->url(fn (Group $record): string => StationResource::getUrl('index').'?group_id='.$record->id),
                 ])
                     ->icon('heroicon-m-ellipsis-vertical')
                     ->iconButton(),

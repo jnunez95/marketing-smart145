@@ -34,9 +34,13 @@ class Campaign extends Model
     }
 
     public const STATUS_DRAFT = 'draft';
+
     public const STATUS_SCHEDULED = 'scheduled';
+
     public const STATUS_SENDING = 'sending';
+
     public const STATUS_SENT = 'sent';
+
     public const STATUS_FAILED = 'failed';
 
     public function emailTemplate(): BelongsTo
@@ -62,5 +66,10 @@ class Campaign extends Model
     public function attachments(): HasMany
     {
         return $this->hasMany(CampaignAttachment::class);
+    }
+
+    public function campaignSchedules(): HasMany
+    {
+        return $this->hasMany(CampaignSchedule::class)->orderBy('scheduled_at');
     }
 }

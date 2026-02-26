@@ -16,6 +16,7 @@ class CampaignAttachmentFactory extends Factory
     public function definition(): array
     {
         $name = fake()->word().'.pdf';
+
         return [
             'campaign_id' => Campaign::factory(),
             'file_path' => 'campaigns/'.fake()->uuid().'/'.$name,

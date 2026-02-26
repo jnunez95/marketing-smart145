@@ -1,0 +1,86 @@
+/* Compact table styles for Filament */
+
+/* Target the text column wrapper which has the padding */
+.fi-ta-text:not(.fi-inline) {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* Smaller text in table rows */
+.fi-ta-text-item {
+    font-size: 0.8125rem !important;
+}
+
+/* Cells with actions */
+.fi-ta-cell:has(.fi-ta-actions) {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* Cells with checkboxes */
+.fi-ta-cell:has(.fi-ta-record-checkbox) {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* Selection cell */
+.fi-ta-cell.fi-ta-selection-cell {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* Smaller badges */
+.fi-badge {
+    font-size: 0.7rem !important;
+    padding: 0.125rem 0.5rem !important;
+}
+
+/* Header cells */
+.fi-ta-header-cell {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* Schedule send for repeater – style like reference (teal accent, numbered circle, rounded box) */
+.schedule-send-repeater-section [data-slot="repeater.item"],
+.schedule-send-repeater-section .fi-fo-repeater-item {
+    border: 1px solid rgb(226 232 240);
+    border-radius: 0.5rem;
+    border-left: 3px solid rgb(20 184 166);
+    background: rgb(248 250 252);
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.schedule-send-repeater-section [data-slot="repeater.item"] .fi-fo-field-wrp,
+.schedule-send-repeater-section .fi-fo-repeater-item .fi-fo-field-wrp {
+    margin-bottom: 0;
+}
+
+/* Numbered circle for repeater item label (teal) */
+.schedule-send-repeater-section [data-slot="repeater.itemLabel"],
+.schedule-send-repeater-section [data-slot="repeater.item"] [data-slot="repeater.itemLabel"],
+.schedule-send-repeater-section .fi-fo-repeater-item-label,
+.schedule-send-repeater-section [class*="repeater"][class*="label"] {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    min-width: 1.75rem;
+    border-radius: 9999px;
+    background: rgb(20 184 166);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-right: 0.75rem;
+    vertical-align: middle;
+}
+
+.dark .schedule-send-repeater-section [data-slot="repeater.item"],
+.dark .schedule-send-repeater-section .fi-fo-repeater-item {
+    border-color: rgb(51 65 85);
+    border-left-color: rgb(20 184 166);
+    background: rgb(30 41 59);
+}
+

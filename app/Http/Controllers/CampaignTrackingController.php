@@ -21,6 +21,7 @@ class CampaignTrackingController extends Controller
         }
 
         $pixel = base64_decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+
         return response($pixel, 200, [
             'Content-Type' => 'image/gif',
             'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',

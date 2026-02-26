@@ -18,9 +18,11 @@ class EmailTemplateResource extends Resource
 {
     protected static ?string $model = EmailTemplate::class;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'CRM';
+    protected static string|\UnitEnum|null $navigationGroup = null;
 
-    protected static ?string $navigationLabel = 'Email templates';
+    protected static ?int $navigationSort = 3;
+
+    protected static ?string $navigationLabel = 'Template';
 
     protected static ?string $modelLabel = 'Email template';
 

@@ -14,6 +14,15 @@ class EditCampaign extends EditRecord
 {
     protected static string $resource = CampaignResource::class;
 
+    protected function afterSave(): void
+    {
+        $record = $this->getRecord();
+        $hasPendingSchedules = $record->campaignSchedules()->whereNull('sent_at')->exists();
+        if (! $hasPendingSchedules && $record->status === Campaign::STATUS_SCHEDULED) {
+            $record->update(['status' => Campaign::STATUS_DRAFT]);
+        }
+    }
+
     protected function getHeaderActions(): array
     {
         return [

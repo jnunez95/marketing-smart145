@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Campaigns\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -32,12 +33,32 @@ class CampaignForm
                             ->preload(),
                     ]),
                 Section::make('Schedule')
+                    ->extraAttributes(['class' => 'schedule-send-repeater-section'])
                     ->schema([
-                        DateTimePicker::make('scheduled_at')
-                            ->label('Schedule send for')
-                            ->native(false),
+                        Repeater::make('campaignSchedules')
+                            ->relationship()
+                            ->hiddenLabel()
+                            ->schema([
+                                DateTimePicker::make('scheduled_at')
+                                    ->label('Schedule send for')
+                                    ->required()
+                                    ->native(false),
+                            ])
+                            ->defaultItems(0)
+                            ->addActionLabel('Add schedule')
+                            ->itemLabel(function (mixed $uuid, $component): string {
+                                $state = $component->getState();
+                                if (! is_array($state)) {
+                                    return '1';
+                                }
+                                $keys = array_keys($state);
+                                $index = array_search($uuid, $keys);
+
+                                return (string) ($index !== false ? $index + 1 : 1);
+                            })
+                            ->columnSpanFull(),
                     ])
-                    ->collapsed(),
+                    ->collapsible(),
             ]);
     }
 }

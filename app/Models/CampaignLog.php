@@ -30,9 +30,13 @@ class CampaignLog extends Model
     }
 
     public const STATUS_PENDING = 'pending';
+
     public const STATUS_SENT = 'sent';
+
     public const STATUS_FAILED = 'failed';
+
     public const STATUS_OPENED = 'opened';
+
     public const STATUS_CLICKED = 'clicked';
 
     public function campaign(): BelongsTo

@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Campaign;
 use App\Models\EmailTemplate;
-use App\Models\Group;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

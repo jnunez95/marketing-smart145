@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Models\Station;
 use App\Models\Campaign;
 use App\Models\CampaignLog;
+use App\Models\Station;
 use App\Services\TemplateVariableParser;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,6 +31,7 @@ class SendCampaignEmailJob implements ShouldQueue
                 'status' => CampaignLog::STATUS_FAILED,
                 'error_message' => 'Campaign has no email template.',
             ]);
+
             return;
         }
 

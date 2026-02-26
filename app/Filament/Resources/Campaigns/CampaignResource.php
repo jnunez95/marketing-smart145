@@ -18,7 +18,9 @@ class CampaignResource extends Resource
 {
     protected static ?string $model = Campaign::class;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'CRM';
+    protected static string|\UnitEnum|null $navigationGroup = null;
+
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationLabel = 'Campaigns';
 

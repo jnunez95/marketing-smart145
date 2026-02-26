@@ -18,7 +18,9 @@ class GroupResource extends Resource
 {
     protected static ?string $model = Group::class;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'CRM';
+    protected static string|\UnitEnum|null $navigationGroup = null;
+
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $navigationLabel = 'Groups';
 

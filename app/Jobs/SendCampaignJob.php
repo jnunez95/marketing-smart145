@@ -45,16 +45,19 @@ class SendCampaignJob implements ShouldQueue
         });
 
         if ($count === 0) {
+            $hasPendingSchedules = $this->campaign->campaignSchedules()->whereNull('sent_at')->exists();
             $this->campaign->update([
-                'status' => $this->campaign->scheduled_at ? Campaign::STATUS_SCHEDULED : Campaign::STATUS_DRAFT,
+                'status' => $hasPendingSchedules ? Campaign::STATUS_SCHEDULED : Campaign::STATUS_DRAFT,
                 'total_recipients' => 0,
             ]);
+
             return;
         }
 
+        $hasPendingSchedules = $this->campaign->campaignSchedules()->whereNull('sent_at')->exists();
         $this->campaign->update([
             'total_recipients' => $count,
-            'status' => Campaign::STATUS_SENT,
+            'status' => $hasPendingSchedules ? Campaign::STATUS_SCHEDULED : Campaign::STATUS_SENT,
             'sent_at' => now(),
         ]);
     }
