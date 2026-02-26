@@ -16,9 +16,9 @@ class Group extends Model
         'color',
     ];
 
-    public function agencies(): HasMany
+    public function stations(): HasMany
     {
-        return $this->hasMany(Agency::class);
+        return $this->hasMany(Station::class);
     }
 
     public function campaigns(): HasMany

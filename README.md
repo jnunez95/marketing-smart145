@@ -49,8 +49,8 @@ php artisan schedule:work
 
 ## Estructura principal
 
-- **Clientes (Agencies)**: CRUD con la estructura de tabla definida; importación/exportación CSV/Excel; asignación a grupos; filtros por grupo y país.
-- **Grupos**: Grupos de clientes con nombre, descripción y color; un cliente pertenece a un solo grupo.
+- **Stations**: CRUD con la estructura de tabla definida; importación/exportación CSV/Excel; asignación a grupos; filtros por grupo y país.
+- **Grupos**: Grupos de stations con nombre, descripción y color; una station pertenece a un solo grupo.
 - **Templates de email**: Editor WYSIWYG; variables `{agency_name}`, `{email}`, etc.; duplicar plantilla.
 - **Campañas**: Crear campaña (template, grupo o todos, programación); botón "Enviar ahora"; tracking de aperturas y clicks.
 

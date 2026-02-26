@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Agencies\Tables;
+namespace App\Filament\Resources\Stations\Tables;
 
 use App\Models\Group;
 use Filament\Actions\Action;
@@ -15,7 +15,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\HtmlString;
 
-class AgenciesTable
+class StationsTable
 {
     public static function configure(Table $table): Table
     {
@@ -27,7 +27,7 @@ class AgenciesTable
                     ->sortable(),
                 TextColumn::make('city')
                     ->label('City, State')
-                    ->formatStateUsing(fn (?string $state, \App\Models\Agency $record): string => trim(implode(', ', array_filter([
+                    ->formatStateUsing(fn (?string $state, \App\Models\Station $record): string => trim(implode(', ', array_filter([
                         $record->city,
                         $record->state_province,
                     ]))) ?: '—')
@@ -49,7 +49,7 @@ class AgenciesTable
                 TextColumn::make('email')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('group.name')
                     ->label('Group')
-                    ->formatStateUsing(function (?string $state, \App\Models\Agency $record): string|HtmlString {
+                    ->formatStateUsing(function (?string $state, \App\Models\Station $record): string|HtmlString {
                         $group = $record->group;
                         if (! $group) {
                             return $state ?? '—';
@@ -76,7 +76,7 @@ class AgenciesTable
                     ->preload(),
                 SelectFilter::make('country')
                     ->label('Country')
-                    ->options(fn () => \App\Models\Agency::query()->distinct()->pluck('country', 'country')->filter()->toArray()),
+                    ->options(fn () => \App\Models\Station::query()->distinct()->pluck('country', 'country')->filter()->toArray()),
             ])
             ->recordActions([
                 ActionGroup::make([
@@ -91,7 +91,7 @@ class AgenciesTable
                                 ->required()
                                 ->searchable(),
                         ])
-                        ->action(function (\App\Models\Agency $record, array $data): void {
+                        ->action(function (\App\Models\Station $record, array $data): void {
                             $record->update(['group_id' => $data['group_id']]);
                         }),
                     EditAction::make()

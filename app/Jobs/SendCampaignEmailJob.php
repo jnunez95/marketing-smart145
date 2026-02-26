@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\Agency;
+use App\Models\Station;
 use App\Models\Campaign;
 use App\Models\CampaignLog;
 use App\Services\TemplateVariableParser;
@@ -19,7 +19,7 @@ class SendCampaignEmailJob implements ShouldQueue
 
     public function __construct(
         public Campaign $campaign,
-        public Agency $agency,
+        public Station $station,
         public CampaignLog $campaignLog
     ) {}
 
@@ -34,8 +34,8 @@ class SendCampaignEmailJob implements ShouldQueue
             return;
         }
 
-        $subject = TemplateVariableParser::replace($template->subject, $this->agency);
-        $bodyHtml = TemplateVariableParser::replace($template->body_html, $this->agency);
+        $subject = TemplateVariableParser::replace($template->subject, $this->station);
+        $bodyHtml = TemplateVariableParser::replace($template->body_html, $this->station);
 
         $trackingToken = $this->campaignLog->tracking_token;
         $openTrackingUrl = route('campaign.track.open', ['token' => $trackingToken]);
@@ -47,7 +47,7 @@ class SendCampaignEmailJob implements ShouldQueue
 
         try {
             Mail::html($bodyHtml, function ($message) use ($subject): void {
-                $message->to($this->agency->email)
+                $message->to($this->station->email)
                     ->subject($subject);
             });
 

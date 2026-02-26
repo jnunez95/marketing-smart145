@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Filament\Resources\Agencies;
+namespace App\Filament\Resources\Stations;
 
-use App\Filament\Resources\Agencies\Pages\CreateAgency;
-use App\Filament\Resources\Agencies\Pages\EditAgency;
-use App\Filament\Resources\Agencies\Pages\ListAgencies;
-use App\Filament\Resources\Agencies\Schemas\AgencyForm;
-use App\Filament\Resources\Agencies\Tables\AgenciesTable;
-use App\Models\Agency;
+use App\Filament\Resources\Stations\Pages\CreateStation;
+use App\Filament\Resources\Stations\Pages\EditStation;
+use App\Filament\Resources\Stations\Pages\ListStations;
+use App\Filament\Resources\Stations\Schemas\StationForm;
+use App\Filament\Resources\Stations\Tables\StationsTable;
+use App\Models\Station;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class AgencyResource extends Resource
+class StationResource extends Resource
 {
-    protected static ?string $model = Agency::class;
+    protected static ?string $model = Station::class;
 
     protected static string|\UnitEnum|null $navigationGroup = 'CRM';
 
@@ -32,12 +32,12 @@ class AgencyResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return AgencyForm::configure($schema);
+        return StationForm::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return AgenciesTable::configure($table);
+        return StationsTable::configure($table);
     }
 
     public static function getRelations(): array
@@ -50,9 +50,9 @@ class AgencyResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListAgencies::route('/'),
-            'create' => CreateAgency::route('/create'),
-            'edit' => EditAgency::route('/{record}/edit'),
+            'index' => ListStations::route('/'),
+            'create' => CreateStation::route('/create'),
+            'edit' => EditStation::route('/{record}/edit'),
         ];
     }
 }

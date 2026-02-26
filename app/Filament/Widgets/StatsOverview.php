@@ -2,7 +2,7 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Agency;
+use App\Models\Station;
 use App\Models\Campaign;
 use App\Models\Group;
 use Filament\Widgets\StatsOverviewWidget;
@@ -22,7 +22,7 @@ class StatsOverview extends StatsOverviewWidget
         $openRate = $totalSent > 0 ? round(($totalOpened / $totalSent) * 100, 1) : 0;
 
         return [
-            Stat::make('Stations', Agency::count())
+            Stat::make('Stations', Station::count())
                 ->description('Total stations')
                 ->icon('heroicon-o-building-office-2'),
             Stat::make('Groups', Group::count())

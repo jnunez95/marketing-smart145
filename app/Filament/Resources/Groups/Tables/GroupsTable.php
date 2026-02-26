@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Groups\Tables;
 
-use App\Filament\Resources\Agencies\AgencyResource;
+use App\Filament\Resources\Stations\StationResource;
 use App\Models\Group;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
@@ -22,9 +22,9 @@ class GroupsTable
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('agencies_count')
+                TextColumn::make('stations_count')
                     ->label('Stations')
-                    ->counts('agencies')
+                    ->counts('stations')
                     ->sortable(),
                 TextColumn::make('color')
                     ->formatStateUsing(function (?string $state): HtmlString {
@@ -56,11 +56,11 @@ class GroupsTable
                     EditAction::make()
                         ->color('gray')
                         ->extraAttributes(['class' => 'hover:!bg-gray-100 dark:hover:!bg-gray-700']),
-                    Action::make('viewAgencies')
+                    Action::make('viewStations')
                         ->label('View stations')
                         ->icon('heroicon-o-building-office-2')
                         ->extraAttributes(['class' => 'hover:!bg-gray-100 dark:hover:!bg-gray-700'])
-                        ->url(fn (Group $record): string => AgencyResource::getUrl('index') . '?group_id=' . $record->id),
+                        ->url(fn (Group $record): string => StationResource::getUrl('index') . '?group_id=' . $record->id),
                 ])
                     ->icon('heroicon-m-ellipsis-vertical')
                     ->iconButton(),

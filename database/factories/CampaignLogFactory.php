@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Agency;
+use App\Models\Station;
 use App\Models\Campaign;
 use App\Models\CampaignLog;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -18,7 +18,7 @@ class CampaignLogFactory extends Factory
     {
         return [
             'campaign_id' => Campaign::factory(),
-            'station_id' => Agency::factory(),
+            'station_id' => Station::factory(),
             'email' => fake()->email(),
             'status' => CampaignLog::STATUS_PENDING,
             'opened_at' => null,

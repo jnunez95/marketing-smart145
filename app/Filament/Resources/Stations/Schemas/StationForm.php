@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Agencies\Schemas;
+namespace App\Filament\Resources\Stations\Schemas;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -10,7 +10,7 @@ use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 
-class AgencyForm
+class StationForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -69,7 +69,7 @@ class AgencyForm
                             ->schema([
                                 FileUpload::make('image_path')
                                     ->image()
-                                    ->directory('agencies')
+                                    ->directory('stations')
                                     ->visibility('private'),
                                 TextInput::make('latitude')
                                     ->numeric()

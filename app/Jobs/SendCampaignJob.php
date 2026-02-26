@@ -24,22 +24,22 @@ class SendCampaignJob implements ShouldQueue
         $this->campaign->update(['status' => Campaign::STATUS_SENDING]);
 
         $query = $this->campaign->group_id
-            ? $this->campaign->group->agencies()
-            : \App\Models\Agency::query();
+            ? $this->campaign->group->stations()
+            : \App\Models\Station::query();
 
         $query->whereNotNull('email')->where('email', '!=', '');
 
         $count = 0;
-        $query->chunk(50, function ($agencies) use (&$count): void {
-            foreach ($agencies as $agency) {
+        $query->chunk(50, function ($stations) use (&$count): void {
+            foreach ($stations as $station) {
                 $log = CampaignLog::create([
                     'campaign_id' => $this->campaign->id,
-                    'station_id' => $agency->id,
-                    'email' => $agency->email,
+                    'station_id' => $station->id,
+                    'email' => $station->email,
                     'status' => CampaignLog::STATUS_PENDING,
                     'tracking_token' => (string) Str::uuid(),
                 ]);
-                SendCampaignEmailJob::dispatch($this->campaign, $agency, $log);
+                SendCampaignEmailJob::dispatch($this->campaign, $station, $log);
                 $count++;
             }
         });

@@ -42,6 +42,6 @@ class CampaignLog extends Model
 
     public function station(): BelongsTo
     {
-        return $this->belongsTo(Agency::class, 'station_id');
+        return $this->belongsTo(Station::class, 'station_id');
     }
 }

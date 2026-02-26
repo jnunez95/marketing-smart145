@@ -26,7 +26,8 @@ class CampaignForm
                             ->preload(),
                         Select::make('group_id')
                             ->relationship('group', 'name')
-                            ->label('Group (empty = all stations)')
+                            ->label('Group')
+                            ->helperText('Leave empty to send to all stations.')
                             ->searchable()
                             ->preload(),
                     ]),

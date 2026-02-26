@@ -2,16 +2,16 @@
 
 namespace Database\Factories;
 
-use App\Models\Agency;
+use App\Models\Station;
 use App\Models\Group;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Agency>
+ * @extends Factory<Station>
  */
-class AgencyFactory extends Factory
+class StationFactory extends Factory
 {
-    protected $model = Agency::class;
+    protected $model = Station::class;
 
     public function definition(): array
     {
