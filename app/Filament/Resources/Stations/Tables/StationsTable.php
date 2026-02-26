@@ -26,6 +26,7 @@ class StationsTable
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('email')->searchable()->sortable(),
                 TextColumn::make('city')
                     ->label('City, State')
                     ->formatStateUsing(fn (?string $state, \App\Models\Station $record): string => trim(implode(', ', array_filter([
@@ -47,7 +48,6 @@ class StationsTable
                     ->sortable(),
                 TextColumn::make('slug')->searchable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('cert_no')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('email')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('group.name')
                     ->label('Group')
                     ->formatStateUsing(function (?string $state, \App\Models\Station $record): string|HtmlString {
